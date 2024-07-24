@@ -2,7 +2,7 @@
 
 # Define version and other variables
 VERSION="0.1.25"
-URL="https://github.com/LottieFiles/dotlottie-rs/releases/download/v${VERSION}/dotlottie-player.wasm.tar.gz"
+URL="https://github.com/LottieFiles/dotlottie-rs/actions/runs/10077927576/artifacts/1735267123"
 TARGET_DIR="./src/core"
 TEMP_DIR="./.tmp/wasm"
 

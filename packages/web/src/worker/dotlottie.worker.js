@@ -49,7 +49,7 @@ var Ke = class {
 var te = typeof window < 'u' && typeof window.document < 'u';
 var me = {
   name: '@lottiefiles/dotlottie-web',
-  version: '0.28.0',
+  version: '0.29.0',
   type: 'module',
   description: 'Lottie and DotLottie player for the web',
   repository: { type: 'git', url: 'git+https://github.com/LottieFiles/dotlottie-web.git', directory: 'packages/web' },
@@ -109,21 +109,21 @@ var Sn = (() => {
       var ve,
         tt = !1,
         G,
-        L,
+        b,
         Z,
         re,
         A,
-        b,
+        L,
         nt,
         rt;
       function at() {
         var e = ve.buffer;
         (a.HEAP8 = G = new Int8Array(e)),
           (a.HEAP16 = Z = new Int16Array(e)),
-          (a.HEAPU8 = L = new Uint8Array(e)),
+          (a.HEAPU8 = b = new Uint8Array(e)),
           (a.HEAPU16 = re = new Uint16Array(e)),
           (a.HEAP32 = A = new Int32Array(e)),
-          (a.HEAPU32 = b = new Uint32Array(e)),
+          (a.HEAPU32 = L = new Uint32Array(e)),
           (a.HEAPF32 = nt = new Float32Array(e)),
           (a.HEAPF64 = rt = new Float64Array(e));
       }
@@ -266,7 +266,7 @@ var Sn = (() => {
           }
         };
       function oe(e) {
-        return this.fromWireType(b[e >> 2]);
+        return this.fromWireType(L[e >> 2]);
       }
       var ee = {},
         K = {},
@@ -296,7 +296,7 @@ var Sn = (() => {
         },
         vt,
         P = (e) => {
-          for (var t = ''; L[e]; ) t += vt[L[e++]];
+          for (var t = ''; b[e]; ) t += vt[b[e++]];
           return t;
         },
         g;
@@ -516,7 +516,7 @@ var Sn = (() => {
           throw (t.forEach(r), new Ct(`${e}: ` + o.map(Mt).join([', '])));
         },
         ze = (e, t) => {
-          for (var r = [], o = 0; o < e; o++) r.push(b[(t + 4 * o) >> 2]);
+          for (var r = [], o = 0; o < e; o++) r.push(L[(t + 4 * o) >> 2]);
           return r;
         };
       function en(e) {
@@ -549,7 +549,7 @@ var Sn = (() => {
           return (v = m ? t[0].fromWireType(c) : void 0), v;
         });
       }
-      var bt = (e) => {
+      var Lt = (e) => {
           e = e.trim();
           let t = e.indexOf('(');
           return t !== -1 ? e.substr(0, t) : e;
@@ -578,7 +578,7 @@ var Sn = (() => {
               return (B[t] = e), (B[t + 1] = 1), t;
           }
         },
-        Lt = {
+        bt = {
           name: 'emscripten::val',
           fromWireType: (e) => {
             var t = Be(e);
@@ -597,7 +597,7 @@ var Sn = (() => {
                     return this.fromWireType(G[o]);
                   }
                 : function (o) {
-                    return this.fromWireType(L[o]);
+                    return this.fromWireType(b[o]);
                   };
             case 2:
               return r
@@ -613,7 +613,7 @@ var Sn = (() => {
                     return this.fromWireType(A[o >> 2]);
                   }
                 : function (o) {
-                    return this.fromWireType(b[o >> 2]);
+                    return this.fromWireType(L[o >> 2]);
                   };
             default:
               throw new TypeError(`invalid integer width (${t}): ${e}`);
@@ -646,11 +646,11 @@ var Sn = (() => {
         rn = (e, t, r) => {
           switch (t) {
             case 1:
-              return r ? (o) => G[o] : (o) => L[o];
+              return r ? (o) => G[o] : (o) => b[o];
             case 2:
               return r ? (o) => Z[o >> 1] : (o) => re[o >> 1];
             case 4:
-              return r ? (o) => A[o >> 2] : (o) => b[o >> 2];
+              return r ? (o) => A[o >> 2] : (o) => L[o >> 2];
             default:
               throw new TypeError(`invalid integer width (${t}): ${e}`);
           }
@@ -658,7 +658,7 @@ var Sn = (() => {
         Ft = typeof TextDecoder < 'u' ? new TextDecoder('utf-16le') : void 0,
         an = (e, t) => {
           for (var r = e >> 1, o = r + t / 2; !(r >= o) && re[r]; ) ++r;
-          if (((r <<= 1), 32 < r - e && Ft)) return Ft.decode(L.subarray(e, r));
+          if (((r <<= 1), 32 < r - e && Ft)) return Ft.decode(b.subarray(e, r));
           for (r = '', o = 0; !(o >= t / 2); ++o) {
             var i = Z[(e + 2 * o) >> 1];
             if (i == 0) break;
@@ -713,7 +713,7 @@ var Sn = (() => {
           return Ve.push(e), t;
         },
         hn = (e, t) => {
-          for (var r = Array(e), o = 0; o < e; ++o) r[o] = Ue(b[(t + 4 * o) >> 2], 'parameter ' + o);
+          for (var r = Array(e), o = 0; o < e; ++o) r[o] = Ue(L[(t + 4 * o) >> 2], 'parameter ' + o);
           return r;
         },
         pn = Reflect.construct,
@@ -749,7 +749,7 @@ var Sn = (() => {
           ye('initRandomDevice');
         },
         xt = (e) => (xt = fn())(e),
-        be = (e) => e % 4 === 0 && (e % 100 !== 0 || e % 400 === 0),
+        Le = (e) => e % 4 === 0 && (e % 100 !== 0 || e % 400 === 0),
         Pt = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31],
         At = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
       function vn(e) {
@@ -798,7 +798,7 @@ var Sn = (() => {
           var v = c.Ia;
           for (c = new Date(new Date(c.Ja + 1900, 0, 1).getTime()); 0 < v; ) {
             var y = c.getMonth(),
-              x = (be(c.getFullYear()) ? Pt : At)[y];
+              x = (Le(c.getFullYear()) ? Pt : At)[y];
             if (v > x - c.getDate())
               (v -= x - c.getDate() + 1),
                 c.setDate(1),
@@ -815,7 +815,7 @@ var Sn = (() => {
             0 >= h(v, c) ? (0 >= h(y, c) ? c.getFullYear() + 1 : c.getFullYear()) : c.getFullYear() - 1
           );
         }
-        var p = b[(o + 40) >> 2];
+        var p = L[(o + 40) >> 2];
         (o = {
           sb: A[o >> 2],
           rb: A[(o + 4) >> 2],
@@ -827,9 +827,9 @@ var Sn = (() => {
           Ia: A[(o + 28) >> 2],
           wb: A[(o + 32) >> 2],
           qb: A[(o + 36) >> 2],
-          tb: p && p ? J(L, p) : '',
+          tb: p && p ? J(b, p) : '',
         }),
-          (r = r ? J(L, r) : ''),
+          (r = r ? J(b, r) : ''),
           (p = {
             '%c': '%a %b %d %H:%M:%S %Y',
             '%D': '%m/%d/%y',
@@ -876,7 +876,7 @@ var Sn = (() => {
           '%H': (c) => l(c.Ra, 2),
           '%I': (c) => ((c = c.Ra), c == 0 ? (c = 12) : 12 < c && (c -= 12), l(c, 2)),
           '%j': (c) => {
-            for (var v = 0, y = 0; y <= c.Sa - 1; v += (be(c.Ja + 1900) ? Pt : At)[y++]);
+            for (var v = 0, y = 0; y <= c.Sa - 1; v += (Le(c.Ja + 1900) ? Pt : At)[y++]);
             return l(c.Va + v, 3);
           },
           '%m': (c) => l(c.Sa + 1, 2),
@@ -891,11 +891,11 @@ var Sn = (() => {
           '%V': (c) => {
             var v = Math.floor((c.Ia + 7 - ((c.Ga + 6) % 7)) / 7);
             if ((2 >= (c.Ga + 371 - c.Ia - 2) % 7 && v++, v))
-              v == 53 && ((y = (c.Ga + 371 - c.Ia) % 7), y == 4 || (y == 3 && be(c.Ja)) || (v = 1));
+              v == 53 && ((y = (c.Ga + 371 - c.Ia) % 7), y == 4 || (y == 3 && Le(c.Ja)) || (v = 1));
             else {
               v = 52;
               var y = (c.Ga + 7 - c.Ia - 1) % 7;
-              (y == 4 || (y == 5 && be((c.Ja % 400) - 1))) && v++;
+              (y == 4 || (y == 5 && Le((c.Ja % 400) - 1))) && v++;
             }
             return l(v, 2);
           },
@@ -920,7 +920,7 @@ var Sn = (() => {
           super(e), (this.name = 'InternalError');
         }
       };
-      for (var Tt = Array(256), Le = 0; 256 > Le; ++Le) Tt[Le] = String.fromCharCode(Le);
+      for (var Tt = Array(256), be = 0; 256 > be; ++be) Tt[be] = String.fromCharCode(be);
       (vt = Tt),
         (g = a.BindingError =
           class extends Error {
@@ -1045,25 +1045,25 @@ var Sn = (() => {
       var gn = {
           c: (e, t, r, o) => {
             ye(
-              `Assertion failed: ${e ? J(L, e) : ''}, at: ` +
-                [t ? (t ? J(L, t) : '') : 'unknown filename', r, o ? (o ? J(L, o) : '') : 'unknown function'],
+              `Assertion failed: ${e ? J(b, e) : ''}, at: ` +
+                [t ? (t ? J(b, t) : '') : 'unknown filename', r, o ? (o ? J(b, o) : '') : 'unknown function'],
             );
           },
           m: (e, t, r) => {
             var o = new Ht(e);
-            throw ((b[(o.ya + 16) >> 2] = 0), (b[(o.ya + 4) >> 2] = t), (b[(o.ya + 8) >> 2] = r), (pt = e), pt);
+            throw ((L[(o.ya + 16) >> 2] = 0), (L[(o.ya + 4) >> 2] = t), (L[(o.ya + 8) >> 2] = r), (pt = e), pt);
           },
-          B: function () {
+          C: function () {
             return 0;
           },
-          P: () => {},
-          M: () => {},
+          Q: () => {},
+          N: () => {},
           R: function () {
             return 0;
           },
-          N: () => {},
-          A: function () {},
           O: () => {},
+          B: function () {},
+          P: () => {},
           v: (e) => {
             var t = ge[e];
             delete ge[e];
@@ -1112,7 +1112,7 @@ var Sn = (() => {
               );
             });
           },
-          I: () => {},
+          J: () => {},
           Y: (e, t, r, o) => {
             (t = P(t)),
               k(e, {
@@ -1125,7 +1125,7 @@ var Sn = (() => {
                 },
                 argPackAdvance: 8,
                 readValueFromPointer: function (i) {
-                  return this.fromWireType(L[i]);
+                  return this.fromWireType(b[i]);
                 },
                 Ea: null,
               });
@@ -1194,7 +1194,7 @@ var Sn = (() => {
           f: (e, t, r, o, i, l, h, u) => {
             var m = ze(r, o);
             (t = P(t)),
-              (t = bt(t)),
+              (t = Lt(t)),
               (l = S(i, l)),
               H([], [e], (p) => {
                 function f() {
@@ -1222,7 +1222,7 @@ var Sn = (() => {
                 );
               });
           },
-          X: (e) => k(e, Lt),
+          X: (e) => k(e, bt),
           x: (e, t, r, o) => {
             function i() {}
             (t = P(t)),
@@ -1251,7 +1251,7 @@ var Sn = (() => {
               (e.values[r] = o),
               (e[t] = o);
           },
-          C: (e, t, r) => {
+          D: (e, t, r) => {
             (t = P(t)),
               k(e, {
                 name: t,
@@ -1262,10 +1262,10 @@ var Sn = (() => {
                 Ea: null,
               });
           },
-          E: (e, t, r, o, i, l) => {
+          F: (e, t, r, o, i, l) => {
             var h = ze(t, r);
             (e = P(e)),
-              (e = bt(e)),
+              (e = Lt(e)),
               (i = S(o, i)),
               ke(
                 e,
@@ -1299,7 +1299,7 @@ var Sn = (() => {
           },
           g: (e, t, r) => {
             function o(l) {
-              return new i(G.buffer, b[(l + 4) >> 2], b[l >> 2]);
+              return new i(G.buffer, L[(l + 4) >> 2], L[l >> 2]);
             }
             var i = [
               Int8Array,
@@ -1314,7 +1314,7 @@ var Sn = (() => {
             (r = P(r)), k(e, { name: r, fromWireType: o, argPackAdvance: 8, readValueFromPointer: o }, { ib: !0 });
           },
           w: (e) => {
-            k(e, Lt);
+            k(e, bt);
           },
           ca: (e, t, r, o, i, l, h, u, m, p, f, _) => {
             (r = P(r)),
@@ -1324,25 +1324,25 @@ var Sn = (() => {
               (_ = S(f, _)),
               H([e], [t], (C) => ((C = C[0]), [new he(r, C.xa, !1, !1, !0, C, o, l, u, p, _)]));
           },
-          D: (e, t) => {
+          E: (e, t) => {
             t = P(t);
             var r = t === 'std::string';
             k(e, {
               name: t,
               fromWireType: function (o) {
-                var i = b[o >> 2],
+                var i = L[o >> 2],
                   l = o + 4;
                 if (r)
                   for (var h = l, u = 0; u <= i; ++u) {
                     var m = l + u;
-                    if (u == i || L[m] == 0) {
-                      if (((h = h ? J(L, h, m - h) : ''), p === void 0)) var p = h;
+                    if (u == i || b[m] == 0) {
+                      if (((h = h ? J(b, h, m - h) : ''), p === void 0)) var p = h;
                       else (p += '\0'), (p += h);
                       h = m + 1;
                     }
                   }
                 else {
-                  for (p = Array(i), u = 0; u < i; ++u) p[u] = String.fromCharCode(L[l + u]);
+                  for (p = Array(i), u = 0; u < i; ++u) p[u] = String.fromCharCode(b[l + u]);
                   p = p.join('');
                 }
                 return U(o), p;
@@ -1355,14 +1355,14 @@ var Sn = (() => {
                 var h = r && l ? mt(i) : i.length,
                   u = Ne(4 + h + 1),
                   m = u + 4;
-                if (((b[u >> 2] = h), r && l)) ft(i, L, m, h + 1);
+                if (((L[u >> 2] = h), r && l)) ft(i, b, m, h + 1);
                 else if (l)
                   for (l = 0; l < h; ++l) {
                     var p = i.charCodeAt(l);
                     if (255 < p) throw (U(m), new g('String has UTF-16 code units that do not fit in 8 bits'));
-                    L[m + l] = p;
+                    b[m + l] = p;
                   }
-                else for (l = 0; l < h; ++l) L[m + l] = i[l];
+                else for (l = 0; l < h; ++l) b[m + l] = i[l];
                 return o !== null && o.push(U, u), u;
               },
               argPackAdvance: 8,
@@ -1378,11 +1378,11 @@ var Sn = (() => {
                 i = on,
                 l = sn,
                 h = (u) => re[u >> 1];
-            else t === 4 && ((o = ln), (i = dn), (l = cn), (h = (u) => b[u >> 2]));
+            else t === 4 && ((o = ln), (i = dn), (l = cn), (h = (u) => L[u >> 2]));
             k(e, {
               name: r,
               fromWireType: (u) => {
-                for (var m = b[u >> 2], p, f = u + 4, _ = 0; _ <= m; ++_) {
+                for (var m = L[u >> 2], p, f = u + 4, _ = 0; _ <= m; ++_) {
                   var C = u + 4 + _ * t;
                   (_ == m || h(C) == 0) &&
                     ((f = o(f, C - f)), p === void 0 ? (p = f) : ((p += '\0'), (p += f)), (f = C + t));
@@ -1393,7 +1393,7 @@ var Sn = (() => {
                 if (typeof m != 'string') throw new g(`Cannot pass non-string to C++ string type ${r}`);
                 var p = l(m),
                   f = Ne(4 + p + t);
-                return (b[f >> 2] = p / t), i(m, f + 4, p + t), u !== null && u.push(U, f), f;
+                return (L[f >> 2] = p / t), i(m, f + 4, p + t), u !== null && u.push(U, f), f;
               },
               argPackAdvance: 8,
               readValueFromPointer: oe,
@@ -1411,11 +1411,11 @@ var Sn = (() => {
           Z: (e, t) => {
             (t = P(t)), k(e, { ub: !0, name: t, argPackAdvance: 0, fromWireType: () => {}, toWireType: () => {} });
           },
-          J: () => {
+          K: () => {
             throw 1 / 0;
           },
           aa: (e, t, r, o) => ((e = Ve[e]), (t = Be(t)), e(null, t, r, o)),
-          F: je,
+          G: je,
           $: (e, t, r) => {
             var o = hn(e, t),
               i = o.shift();
@@ -1431,7 +1431,7 @@ var Sn = (() => {
                     (u = r === 1 ? pn(u, l) : u.apply(h, l)),
                     (h = []),
                     (u = i.toWireType(h, u)),
-                    h.length && (b[m >> 2] = Me(h)),
+                    h.length && (L[m >> 2] = Me(h)),
                     u
                   );
                 }),
@@ -1450,8 +1450,8 @@ var Sn = (() => {
             ye('');
           },
           V: () => performance.now(),
-          L: (e) => {
-            var t = L.length;
+          M: (e) => {
+            var t = b.length;
             if (((e >>>= 0), 2147483648 < e)) return !1;
             for (var r = 1; 4 >= r; r *= 2) {
               var o = t * (1 + 0.2 / r);
@@ -1478,7 +1478,7 @@ var Sn = (() => {
             return (
               It().forEach((o, i) => {
                 var l = t + r;
-                for (i = b[(e + 4 * i) >> 2] = l, l = 0; l < o.length; ++l) G[i++] = o.charCodeAt(l);
+                for (i = L[(e + 4 * i) >> 2] = l, l = 0; l < o.length; ++l) G[i++] = o.charCodeAt(l);
                 (G[i] = 0), (r += o.length + 1);
               }),
               0
@@ -1486,41 +1486,41 @@ var Sn = (() => {
           },
           T: (e, t) => {
             var r = It();
-            b[e >> 2] = r.length;
+            L[e >> 2] = r.length;
             var o = 0;
-            return r.forEach((i) => (o += i.length + 1)), (b[t >> 2] = o), 0;
+            return r.forEach((i) => (o += i.length + 1)), (L[t >> 2] = o), 0;
           },
           t: () => 52,
-          z: () => 52,
-          H: function () {
+          A: () => 52,
+          I: function () {
             return 70;
           },
-          Q: (e, t, r, o) => {
+          z: (e, t, r, o) => {
             for (var i = 0, l = 0; l < r; l++) {
-              var h = b[t >> 2],
-                u = b[(t + 4) >> 2];
+              var h = L[t >> 2],
+                u = L[(t + 4) >> 2];
               t += 8;
               for (var m = 0; m < u; m++) {
-                var p = L[h + m],
+                var p = b[h + m],
                   f = mn[e];
                 p === 0 || p === 10 ? ((e === 1 ? Wt : Q)(J(f, 0)), (f.length = 0)) : f.push(p);
               }
               i += u;
             }
-            return (b[o >> 2] = i), 0;
+            return (L[o >> 2] = i), 0;
           },
-          U: (e, t) => (xt(L.subarray(e, e + t)), 0),
+          U: (e, t) => (xt(b.subarray(e, e + t)), 0),
           i: Mn,
           d: Cn,
           e: En,
-          p: bn,
+          p: Ln,
           y: In,
           b: wn,
           a: _n,
           h: Fn,
-          n: Ln,
-          G: xn,
-          K: (e, t, r, o) => yn(e, t, r, o),
+          n: bn,
+          H: xn,
+          L: (e, t, r, o) => yn(e, t, r, o),
         },
         F = (function () {
           function e(r) {
@@ -1612,7 +1612,7 @@ var Sn = (() => {
           D(1, 0);
         }
       }
-      function bn(e, t, r, o, i, l) {
+      function Ln(e, t, r, o, i, l) {
         var h = O();
         try {
           return $.get(e)(t, r, o, i, l);
@@ -1621,7 +1621,7 @@ var Sn = (() => {
           D(1, 0);
         }
       }
-      function Ln(e, t, r, o, i) {
+      function bn(e, t, r, o, i) {
         var l = O();
         try {
           $.get(e)(t, r, o, i);
@@ -2214,7 +2214,13 @@ var Qe = (s, n) =>
       this.postStateMachineEvent('OnComplete');
     }
     postStateMachineEvent(n) {
-      return this._dotLottieCore?.postEventPayload(n) ?? !1;
+      let a = this._dotLottieCore?.postEventPayload(n) ?? 1;
+      if (a === 2) {
+        console.log('>> CORE PLAYING');
+        let d = this.play();
+        console.log('PLAY >> ', d);
+      } else a === 3 ? this.pause() : a === 4 && this._draw();
+      return a;
     }
     getStateMachineListeners() {
       if (!this._dotLottieCore) return [];
